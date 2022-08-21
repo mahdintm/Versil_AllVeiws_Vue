@@ -5,6 +5,7 @@
     <VehicleVue v-if="VehicleVue.isActive"></VehicleVue>
     <eyeTrackerVue v-if="EyeTrackerVue.isActive"></eyeTrackerVue>
     <ClothesVue v-if="ClothesVue.isActive"></ClothesVue>
+    <ScoreBoardVue v-if="ScoreBoardVue.isActive"></ScoreBoardVue>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import ChatVue from './components/Chat.vue'
 import VehicleVue from './components/Vehicle.vue'
 import eyeTrackerVue from './components/eyeTracker.vue'
 import ClothesVue from './components/Clothes.vue'
+import ScoreBoardVue from './components/ScoreBoard.vue'
 export default {
   name: 'App',
   components: {
@@ -21,7 +23,8 @@ export default {
     ChatVue,
     VehicleVue,
     eyeTrackerVue,
-    ClothesVue
+    ClothesVue,
+    ScoreBoardVue
   },
   data() {
     return {
@@ -30,6 +33,7 @@ export default {
       VehicleVue: { isActive: false },
       EyeTrackerVue: { isActive: false },
       ClothesVue: { isActive: false },
+      ScoreBoardVue: { isActive: false },
       WebViewEvents: {
         allVue: {
           mountedAndReady: "WEBclient:allVue:mountedAndReady",
@@ -58,6 +62,11 @@ export default {
           load: "ClientWEB:ClothesWebView:Load",
           unLoad: "ClientWEB:ClothesWebView:unLoad",
           close: "ClientWEB:ClothesWebView:close",
+        },
+        scoreBoard: {
+          load: "ClientWEB:scoreBoardWebView:Load",
+          unLoad: "ClientWEB:scoreBoardWebView:unLoad",
+          close: "ClientWEB:scoreBoardWebView:close",
         },
       },
     }
@@ -97,6 +106,13 @@ export default {
       })
       alt.on(this.WebViewEvents.clothes.unLoad, () => {
         this.ClothesVue.isActive = false;
+      })
+
+      alt.on(this.WebViewEvents.scoreBoard.load, () => {
+        this.ScoreBoardVue.isActive = true;
+      })
+      alt.on(this.WebViewEvents.scoreBoard.unLoad, () => {
+        this.ScoreBoardVue.isActive = false;
       })
     }
   },
@@ -174,6 +190,11 @@ export default {
 @font-face {
   font-family: "Reyhaneh";
   src: url("./assets/font/Reyhaneh.ttf");
+}
+
+@font-face {
+  font-family: "Logomotion";
+  src: url("./assets/font/Logomotion.ttf");
 }
 
 * {
