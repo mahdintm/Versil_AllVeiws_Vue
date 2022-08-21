@@ -311,21 +311,30 @@ export default {
 }
 
 .ClothesBox {
-    height: 90%;
-    display: grid;
-    grid-template-rows: 90% 10%;
     position: fixed;
-    opacity: 0;
     top: 50px;
     right: -500px;
+    display: grid;
+    grid-template-rows: auto auto;
     width: 500px;
+    height: 90%;
+    opacity: 0;
     border-radius: 5px;
     overflow: hidden;
     background-color: var(--Clothes_Box_Background_Color);
     transition: 0.1s;
 }
 
+.SetClothesBox {
+    background-color: var(--Clothes_Box_Background_Color);
+    /* height: 50%; */
+    text-align: center;
+    transition: 0.5s;
+    overflow-y: auto;
+}
+
 .ClothesButtonBox {
+    height: 80px;
     text-align: center;
     background-color: var(--Clothes_Item_Background_Color);
     width: 100%;
@@ -367,13 +376,6 @@ export default {
     transition: background-color 0.1s;
 }
 
-.SetClothesBox {
-    background-color: var(--Clothes_Box_Background_Color);
-
-    text-align: center;
-    transition: 0.5s;
-    overflow-y: scroll;
-}
 
 .ActiveBoxFromRight {
     opacity: 1;
