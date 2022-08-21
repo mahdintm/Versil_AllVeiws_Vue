@@ -77,14 +77,12 @@ export default {
             this.PlayerPlayTime = ScoreBoardDetails.PlayerPlayTime;
             this.PlayersDetails = []
             ScoreBoardDetails.PlayersDetails.forEach(PlayerDetails => {
-                for (let i = 0; i < 50; i++) {
-                    this.PlayersDetails.push({
-                        ID: PlayerDetails.ID,
-                        Name: PlayerDetails.Name,
-                        Ping: PlayerDetails.Ping,
-                        Level: PlayerDetails.Level
-                    })
-                }
+                this.PlayersDetails.push({
+                    ID: PlayerDetails.ID,
+                    Name: PlayerDetails.Name,
+                    Ping: PlayerDetails.Ping,
+                    Level: PlayerDetails.Level
+                })
             });
 
             document.getElementById('VGScoreBoard').classList.add('VGScoreBoardActive')
