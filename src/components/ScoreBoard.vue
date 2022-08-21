@@ -84,7 +84,6 @@ export default {
                     Level: PlayerDetails.Level
                 })
             });
-
             document.getElementById('VGScoreBoard').classList.add('VGScoreBoardActive')
         },
         CloseScoreBoard() {
@@ -110,7 +109,7 @@ export default {
     background-color: #4b4b4b;
     color: #fff;
     border-radius: 5px;
-    opacity: 0%;
+    opacity: 0;
     font-weight: 600;
     top: 50%;
     left: 50%;
@@ -119,7 +118,7 @@ export default {
 }
 
 .VGScoreBoardActive {
-    opacity: 92%;
+    opacity: 0.9 !important;
     transition: 0.3s opacity;
 }
 

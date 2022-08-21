@@ -25,9 +25,11 @@ export default {
             }
         }
     },
-    unmounted() {
+    beforeUnmount() {
         if (this.IsLoginSuccessfully)
             document.getElementById('LoginBTN').disabled = false;
+    },
+    unmounted() {
         if ("alt" in window) {
             alt.off(this.eventNames.clientWEB.LoginSuccessfully, this.LoginPageIsLoginSuccessfully);
             alt.off(this.eventNames.clientWEB.SetDataWeb, this.LoginPageSetDataWebIsHTML);
