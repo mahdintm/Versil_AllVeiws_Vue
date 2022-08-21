@@ -13,6 +13,7 @@ export default {
     name: 'LoginVue',
     data() {
         return {
+            IsLoginSuccessfully: false,
             eventNames: {
                 clientWEB: {
                     SetDataWeb: "ClientWEB:Login:SetDataWeb",
@@ -25,6 +26,8 @@ export default {
         }
     },
     unmounted() {
+        if (this.IsLoginSuccessfully)
+            document.getElementById('LoginBTN').disabled = false;
         if ("alt" in window) {
             alt.off(this.eventNames.clientWEB.LoginSuccessfully, this.LoginPageIsLoginSuccessfully);
             alt.off(this.eventNames.clientWEB.SetDataWeb, this.LoginPageSetDataWebIsHTML);
@@ -40,7 +43,7 @@ export default {
     },
     methods: {
         LoginPageIsLoginSuccessfully() {
-            document.getElementById('LoginBTN').disabled = false;
+            this.IsLoginSuccessfully = true
         },
         LoginPageSetDataWebIsHTML(object) {
             try {
@@ -52,6 +55,7 @@ export default {
             }
         },
         LoginToServer() {
+            if (document.getElementById('LoginBTN').disabled) return
             const LoginPage_Username = document.getElementById('LoginPage_Username').value;
             const LoginPage_Passowrd = document.getElementById('LoginPage_Password').value;
             if (!LoginPage_Username) return
