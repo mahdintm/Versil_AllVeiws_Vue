@@ -112,8 +112,6 @@ export default {
             alt.on(this.eventNames.clientWEB.SetSuggestion, this.SetClassActiveToSuggestion);
             alt.on(this.eventNames.clientWEB.SetDrawableIndex, this.SetDrawableIndex);
             alt.on(this.eventNames.clientWEB.close, this.ClothesBoxCloseFromClient);
-        } else {
-            this.ClothesBoxOpenFromClient('male', [['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1],])
         }
     },
     methods: {
