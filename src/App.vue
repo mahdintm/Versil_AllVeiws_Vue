@@ -32,7 +32,7 @@ export default {
       ChatVue: { isActive: false },
       VehicleVue: { isActive: false },
       EyeTrackerVue: { isActive: false },
-      ClothesVue: { isActive: false },
+      ClothesVue: { isActive: true },
       ScoreBoardVue: { isActive: false },
       WebViewEvents: {
         allVue: {

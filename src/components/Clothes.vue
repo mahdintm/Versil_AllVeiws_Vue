@@ -39,14 +39,14 @@
                         <div>{{ ClothesUtil[0] }}</div>
                         <div class="ClothesIndexAndLengh"><span :id="'ClothesShowItemValueID' + index">1</span><span> |
                             </span><span :id="'ClothesMaximumItemValueID' + index">{{
-                                    ClothesUtil[this.indexGenderItems]
+                                    ClothesUtil[1]
                             }}</span></div>
                     </div>
 
                     <div class="ClothesBoxClumns_3 MarginTop10px">
                         <div class="ClothesBox_RBTN" :id="'LeftBTNClothesID' + (index + 1)"
                             @click="ChangeItemValue(false, index, index + 1)">&#10094;</div>
-                        <input type="number" min='1' class="ClothesItemValue" :id="'ClothesItemValueID' + index"
+                        <input type="number" class="ClothesItemValue" :id="'ClothesItemValueID' + index"
                             @blur="CheckValueForChange(index)" @keydown='ResetElem(index)'
                             @change="ChangeClothesItemValue(index)" value="1" />
                         <div class="ClothesBox_RBTN" :id="'RightBTNClothesID' + (index + 1)"
@@ -71,7 +71,6 @@ export default {
         return {
             SelectedStatus: -1,
             Gender: '',
-            indexGenderItems: 1,
             ClothesUtils: [],
             eventNames: {
                 clientWEB: {
@@ -79,7 +78,9 @@ export default {
                     SexChanged: "ClientWEB:Clothes:SexChanged",
                     KeyRowUpPressed: "ClientWEB:clothes:KeyRowUpPressed",
                     KeyRowLeftPressed: "ClientWEB:clothes:KeyRowLeftPressed",
+                    SetSuggestion: 'ClientWEB:clothes:SetSuggestion',
                     close: "ClientWEB:ClothesWebView:close",
+                    SetDrawableIndex: "ClientWEB:clothes:SetDrawableIndex",
                 },
                 WEBclient: {
                     ChangeClothes: "WEBclient:Clothes:ChangeClothes",
@@ -97,6 +98,8 @@ export default {
             alt.off(this.eventNames.clientWEB.SexChanged, this.ClothesBoxSexChangedFromClient);
             alt.off(this.eventNames.clientWEB.KeyRowUpPressed, this.KeyRowPressed);
             alt.off(this.eventNames.clientWEB.KeyRowLeftPressed, this.KeyRowLeftPressed);
+            alt.off(this.eventNames.clientWEB.SetSuggestion, this.SetClassActiveToSuggestion);
+            alt.off(this.eventNames.clientWEB.SetDrawableIndex, this.SetDrawableIndex);
             alt.off(this.eventNames.clientWEB.close, this.ClothesBoxCloseFromClient);
         }
     },
@@ -106,10 +109,18 @@ export default {
             alt.on(this.eventNames.clientWEB.SexChanged, this.ClothesBoxSexChangedFromClient);
             alt.on(this.eventNames.clientWEB.KeyRowUpPressed, this.KeyRowPressed);
             alt.on(this.eventNames.clientWEB.KeyRowLeftPressed, this.KeyRowLeftPressed);
+            alt.on(this.eventNames.clientWEB.SetSuggestion, this.SetClassActiveToSuggestion);
+            alt.on(this.eventNames.clientWEB.SetDrawableIndex, this.SetDrawableIndex);
             alt.on(this.eventNames.clientWEB.close, this.ClothesBoxCloseFromClient);
+        } else {
+            this.ClothesBoxOpenFromClient('male', [['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1], ['t', 1],])
         }
     },
     methods: {
+        SetDrawableIndex(BoxComponentIndex, DrawableIndex) {
+            document.getElementById('ClothesItemValueID' + BoxComponentIndex).value = DrawableIndex;
+            this.ChangeClothesItemValue(BoxComponentIndex);
+        },
         ClothesBoxOpenFromClient(Gender, ClothesUtils) {
             this.AddClothesItems(Gender, ClothesUtils);
             return this.ClassController("ClothesBox", "ActiveBoxFromRight", "add");
@@ -124,10 +135,8 @@ export default {
         AddClothesItems(Gender, ClothesUtils) {
             if (Gender == "male") {
                 this.Gender = "Male";
-                this.indexGenderItems = 1;
             } else {
                 this.Gender = "Female";
-                this.indexGenderItems = 2;
             }
             this.ClothesUtils = ClothesUtils;
         },
@@ -226,7 +235,7 @@ export default {
             }
 
             // Send Values To Client Side
-            if ("alt" in window) alt.emit(this.eventNames.WEBclient.ChangeClothes, elemID, value);
+            if ("alt" in window) alt.emit(this.eventNames.WEBclient.ChangeClothes, this.Gender, elemID, value);
         },
         ChangeSex(Sex) {
             if (Sex == document.getElementById("SkinGender").innerHTML.toLowerCase())
@@ -285,9 +294,11 @@ export default {
             }
 
             if ("alt" in window) {
-                document.getElementById('SelectSuggestionID' + ID).classList.add('ClothesSexBTNActive');
                 alt.emit(this.eventNames.WEBclient.Suggestion, this.Gender, ID)
             }
+        },
+        SetClassActiveToSuggestion(ID) {
+            document.getElementById('SelectSuggestionID' + ID).classList.add('ClothesSexBTNActive');
         },
         OrderBTNClicked() {
             alt.emit(this.eventNames.WEBclient.OrderList);
@@ -315,7 +326,7 @@ export default {
     top: 50px;
     right: -500px;
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto 80px;
     width: 500px;
     height: 90%;
     opacity: 0;
