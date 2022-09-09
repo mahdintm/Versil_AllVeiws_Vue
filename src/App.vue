@@ -6,6 +6,7 @@
     <eyeTrackerVue v-if="EyeTrackerVue.isActive"></eyeTrackerVue>
     <ClothesVue v-if="ClothesVue.isActive"></ClothesVue>
     <ScoreBoardVue v-if="ScoreBoardVue.isActive"></ScoreBoardVue>
+    <TestVue></TestVue>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import VehicleVue from './components/Vehicle.vue'
 import eyeTrackerVue from './components/eyeTracker.vue'
 import ClothesVue from './components/Clothes.vue'
 import ScoreBoardVue from './components/ScoreBoard.vue'
+import TestVue from './components/TestVue.vue'
 export default {
   name: 'App',
   components: {
@@ -24,7 +26,8 @@ export default {
     VehicleVue,
     eyeTrackerVue,
     ClothesVue,
-    ScoreBoardVue
+    ScoreBoardVue,
+    TestVue
   },
   data() {
     return {
