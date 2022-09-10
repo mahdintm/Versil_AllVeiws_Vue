@@ -195,16 +195,16 @@ sup {
   top: -.5em; }
 
 a {
-  color: #7367f0;
-  text-decoration: none; }
+  color: #7367f0 !important;
+  text-decoration: none !important; }
 
 a:hover {
-  color: #6d62e4;
-  text-decoration: none; }
+  color: #6d62e4 !important;
+  text-decoration: none !important; }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
-  color: inherit;
-  text-decoration: none; }
+  color: inherit !important;
+  text-decoration: none !important; }
 
 pre,
 code,

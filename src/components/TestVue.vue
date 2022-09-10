@@ -123,7 +123,7 @@ export default {
 <style scoped>
 @import url('../assets/css/loginFormGoogleFont.css');
 @import url('../assets/vendors/css/vendors.min.css');
-@import url('../assets/css/bootstrap.min.css');
+/* @import url('../assets/css/bootstrap.min.css'); */
 @import url('../assets/css/bootstrap-extended.min.css');
 @import url('../assets/css/colors.min.css');
 @import url('../assets/css/components.min.css');

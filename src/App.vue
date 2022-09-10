@@ -2,37 +2,41 @@
   <div id="VG_AllVue">
     <LoginVue v-if="LoginVue.isActive"></LoginVue>
     <ChatVue v-if="ChatVue.isActive"></ChatVue>
+    <HUDVue v-if="HUDVue.isActive"></HUDVue>
     <VehicleVue v-if="VehicleVue.isActive"></VehicleVue>
     <eyeTrackerVue v-if="EyeTrackerVue.isActive"></eyeTrackerVue>
     <ClothesVue v-if="ClothesVue.isActive"></ClothesVue>
     <ScoreBoardVue v-if="ScoreBoardVue.isActive"></ScoreBoardVue>
-    <TestVue></TestVue>
+    <!-- <TestVue v-if="false"></TestVue> -->
   </div>
 </template>
 
 <script>
 import LoginVue from './components/Login.vue'
 import ChatVue from './components/Chat.vue'
+import HUDVue from './components/HUD.vue'
 import VehicleVue from './components/Vehicle.vue'
 import eyeTrackerVue from './components/eyeTracker.vue'
 import ClothesVue from './components/Clothes.vue'
 import ScoreBoardVue from './components/ScoreBoard.vue'
-import TestVue from './components/TestVue.vue'
+// import TestVue from './components/TestVue.vue'
 export default {
   name: 'App',
   components: {
     LoginVue,
     ChatVue,
+    HUDVue,
     VehicleVue,
     eyeTrackerVue,
     ClothesVue,
     ScoreBoardVue,
-    TestVue
+    // TestVue
   },
   data() {
     return {
       LoginVue: { isActive: false },
       ChatVue: { isActive: false },
+      HUDVue: { isActive: false },
       VehicleVue: { isActive: false },
       EyeTrackerVue: { isActive: false },
       ClothesVue: { isActive: false },
@@ -70,6 +74,10 @@ export default {
           load: "ClientWEB:scoreBoardWebView:Load",
           unLoad: "ClientWEB:scoreBoardWebView:unLoad",
           close: "ClientWEB:scoreBoardWebView:close",
+        },
+        HUD: {
+          load: "ClientWEB:HUD:Load",
+          unLoad: "ClientWEB:HUD:unLoad",
         },
       },
     }
@@ -116,6 +124,13 @@ export default {
       })
       alt.on(this.WebViewEvents.scoreBoard.unLoad, () => {
         this.ScoreBoardVue.isActive = false;
+      })
+
+      alt.on(this.WebViewEvents.HUD.load, () => {
+        this.HUDVue.isActive = true;
+      })
+      alt.on(this.WebViewEvents.HUD.unLoad, () => {
+        this.HUDVue.isActive = false;
       })
     }
   },

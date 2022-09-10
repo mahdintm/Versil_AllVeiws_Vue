@@ -39,7 +39,7 @@
                         <div>{{ ClothesUtil[0] }}</div>
                         <div class="ClothesIndexAndLengh"><span :id="'ClothesShowItemValueID' + index">1</span><span> |
                             </span><span :id="'ClothesMaximumItemValueID' + index">{{
-                                    ClothesUtil[1]
+                            ClothesUtil[1]
                             }}</span></div>
                     </div>
 
@@ -299,7 +299,7 @@ export default {
             document.getElementById('SelectSuggestionID' + ID).classList.add('ClothesSexBTNActive');
         },
         OrderBTNClicked() {
-            alt.emit(this.eventNames.WEBclient.OrderList);
+            alt.emit(this.eventNames.WEBclient.OrderList, this.Gender);
         },
         CloseBTNClicked() {
             this.ClothesBoxCloseFromClient();
