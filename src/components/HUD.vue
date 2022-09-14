@@ -107,6 +107,9 @@
                             <div class="micbar-2-text mic-text"></div>
                             <div class="micbar-3-text mic-text"></div>
                         </div>
+                        <div id="IDImageInRadarHUD" class="IDImageInRadarHUD">
+                            <img src="../assets/img/hud/Text-Mode/id.png" alt="" srcset="">
+                        </div>
                     </div>
                 </div>
 
@@ -454,7 +457,14 @@
             <div id="text">
                 <h1 id="CarHUDSpeedText">59</h1>
                 <h2 id="speed-unit-text">km/h</h2>
+                <div id="gearTextBox">
+                    <div id="SubgearTextBox">
+                        <h2 id="NowGearText">P</h2>
+                        <h2 id="NextGearText"></h2>
+                    </div>
+                </div>
             </div>
+
             <!-- <div class="compass">
         <img src="./img/Compass-Top.png" alt="" />
       </div> -->
@@ -485,13 +495,28 @@
                 <img id="brakes-on" src="../assets/img/hud/img/brake-system-warning.png" alt="" />
                 <img id="left-on" src="../assets/img/hud/img/left-arrow.png" alt="" />
                 <img id="right-on" src="../assets/img/hud/img/right-arrow.png" alt="" />
+                <svg xmlns="http://www.w3.org/2000/svg" id="engineColor" width="21" height="21" viewBox="0 0 21 21"
+                    fill="none">
+                    <g id="engine-icon" opacity="0.35" clip-path="url(#clip0)">
+                        <path
+                            d="M17.1416 7.1405C16.818 7.1405 16.5557 7.40285 16.5557 7.72644V8.31238H15.3838V7.72644C15.3838 7.40285 15.1214 7.1405 14.7979 7.1405H13.8687L12.8684 6.14023C12.7585 6.03035 12.6095 5.96863 12.4541 5.96863H11.8682V4.79675H12.4541C12.7777 4.79675 13.04 4.53441 13.04 4.21082C13.04 3.88722 12.7777 3.62488 12.4541 3.62488H6.5166C6.19301 3.62488 5.93066 3.88722 5.93066 4.21082C5.93066 4.53441 6.19301 4.79675 6.5166 4.79675H7.10254V5.96863H6.5166C6.36117 5.96863 6.21219 6.03035 6.1023 6.14023L5.10203 7.1405H3.00098C2.67738 7.1405 2.41504 7.40285 2.41504 7.72644V10.0702H1.24316V7.72644C1.24316 7.40285 0.98082 7.1405 0.657227 7.1405C0.333633 7.1405 0.0712891 7.40285 0.0712891 7.72644V13.5858C0.0712891 13.9094 0.333633 14.1718 0.657227 14.1718C0.98082 14.1718 1.24316 13.9094 1.24316 13.5858V11.2421H2.41504V13.5858C2.41504 13.9094 2.67738 14.1718 3.00098 14.1718H5.10203L7.27418 16.3439C7.38406 16.4538 7.53305 16.5155 7.68848 16.5155H13.626C13.8479 16.5155 14.0508 16.3901 14.1501 16.1916L15.16 14.1718H16.5557V14.7577C16.5557 15.0813 16.818 15.3436 17.1416 15.3436C18.757 15.3436 20.0713 14.0294 20.0713 12.4139V10.0702C20.0713 8.45476 18.757 7.1405 17.1416 7.1405ZM4.75879 12.9999H3.58691V8.31238H4.75879V12.9999ZM8.27441 4.79675H10.6963V5.96863H8.27441V4.79675ZM14.2119 13.4475L13.2638 15.3436H7.93117L5.93066 13.3431V7.96914L6.7593 7.1405C6.99762 7.1405 12.0013 7.1405 12.2114 7.1405L13.2116 8.14078C13.3216 8.25066 13.4705 8.31238 13.626 8.31238H14.2119C14.2119 8.55195 14.2119 13.2568 14.2119 13.4475ZM16.5557 12.9999H15.3838V9.48425H16.5557V12.9999ZM18.8994 12.4139C18.8994 13.1778 18.4096 13.8295 17.7275 14.0714C17.7275 13.6599 17.7275 8.56792 17.7275 8.41281C18.4096 8.65464 18.8994 9.30628 18.8994 10.0702V12.4139Z"
+                            fill="white" />
+                        <path
+                            d="M11.2818 10.6562H9.88614L10.634 9.16038C10.7788 8.87092 10.6614 8.51897 10.372 8.37424C10.0825 8.22952 9.73059 8.34686 9.58586 8.63628L8.41399 10.98C8.21965 11.3687 8.50254 11.828 8.93805 11.828H10.3337L9.58582 13.3238C9.4411 13.6133 9.55844 13.9652 9.84785 14.11C10.1374 14.2547 10.4893 14.1372 10.634 13.8479L11.8059 11.5042C12.0002 11.1155 11.7173 10.6562 11.2818 10.6562Z"
+                            fill="white" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0">
+                            <rect width="20" height="20" fill="white" transform="translate(0.0712891 0.0701904)" />
+                        </clipPath>
+                    </defs>
+                </svg>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    // import $ from 'jquery'
 export default {
     name: 'HUDVue',
     data() {
@@ -500,16 +525,17 @@ export default {
                 clientWEB: {
                     SetPlayerCashDetails: "ClientWEB:HUD:SetPlayerCashDetails",
                     SetCarHUDDetails: "ClientWEB:HUD:SetCarHUDDetails",
+                    SetVeniceHUDDetails: "ClientWEB:HUD:SetVeniceHUDDetails",
                 },
                 WEBclient: {
-                   
+
                 },
             }
         }
     },
-    methods:{
-        CarHUDManager(Details = {}){
-            if(!Details.isActiveCarHud){
+    methods: {
+        CarHUDManager(Details = {}) {
+            if (!Details.isActiveCarHud) {
                 document.getElementsByClassName('carhud')[0].style.display = 'none';
                 document.getElementById('text').style.display = 'none';
                 document.getElementsByClassName('speedsvg')[0].style.display = 'none';
@@ -525,24 +551,24 @@ export default {
 
             document.getElementsByClassName('fuelani')[0].style.strokeDasharray = `${(Details.Fuel * 150) / 100}, 400`;
             document.getElementsByClassName('hizsvg')[0].style.strokeDasharray = `${Details.RPM}, 400`;
-            
+
+            Details.Engine ? document.getElementById('engineColor').classList.add('engineColorActive') : document.getElementById('engineColor').classList.remove('engineColorActive');
             document.getElementById('CarHUDSpeedText').innerHTML = Details.Speed;
             Details.isSeatBelt ? document.getElementById('seatbelt-on').style.display = 'block' : document.getElementById('seatbelt-on').style.display = 'none';
             Details.isCruse ? document.getElementById('cruise-on').style.display = 'block' : document.getElementById('cruise-on').style.display = 'none';
             Details.isLongLights ? document.getElementById('longlights-on').style.display = 'block' : document.getElementById('longlights-on').style.display = 'none';
             Details.isLights ? document.getElementById('lights-on').style.display = 'block' : document.getElementById('lights-on').style.display = 'none';
             Details.isHandBrake ? document.getElementById('brakes-on').style.display = 'block' : document.getElementById('brakes-on').style.display = 'none';
-            
-            if (Details.isPairGuide) {
-                document.getElementById('left-on').style.display = 'block';
-                document.getElementById('right-on').style.display = 'block';
-            } else {
-                Details.isLeftGuide ? document.getElementById('left-on').style.display = 'block' : document.getElementById('left-on').style.display = 'none';
-                Details.isRightGuide ? document.getElementById('right-on').style.display = 'block' : document.getElementById('right-on').style.display = 'none';
-            }
+            Details.isHighRPM ? document.getElementsByClassName('hizsvg')[0].style.stroke = 'red' : document.getElementsByClassName('hizsvg')[0].style.stroke = 'white';
+            Details.isHighRPM ? document.getElementById('NowGearText').classList.add('ShakeGear') : document.getElementById('NowGearText').classList.remove('ShakeGear');
+            Details.isLeftGuide ? document.getElementById('left-on').style.display = 'block' : document.getElementById('left-on').style.display = 'none';
+            Details.isRightGuide ? document.getElementById('right-on').style.display = 'block' : document.getElementById('right-on').style.display = 'none';
+
+            if (Details.isGearUP != 'NotChanged')
+                this.ChangeGearValue(Details.GearValue, Details.isGearUP)
         },
-        PlayerCashHUDManager(Details = {}){
-            if(!Details.isActiveCashHUD){
+        PlayerCashHUDManager(Details = {}) {
+            if (!Details.isActiveCashHUD) {
                 return document.getElementsByClassName('playerhud')[0].style.display = 'none';
             }
             document.getElementsByClassName('playerhud')[0].style.display = 'block';
@@ -555,21 +581,75 @@ export default {
             const playerhudjob = document.getElementById('playerhudjob');
             playerhudjob.innerHTML = Details.playerJob;
         },
-        
+        PlayerHUDRadarVeniceManager(Details = {}) {
+            if (!Details.isActiveRadarVenice) {
+                return document.getElementsByClassName('venice-hud')[0].style.display = 'none';
+            }
+            document.getElementsByClassName('venice-hud')[0].style.display = 'block';
+
+            document.getElementsByClassName('saatvenice')[0].innerHTML = Details.ServerTime;
+            document.getElementsByClassName('streetnamevenice')[0].innerHTML = Details.PlayerName;
+            document.getElementById('health-bar2').style.strokeDasharray = `${Details.HealthValue}, 400`;
+            document.getElementById('hunger-bar2').style.strokeDasharray = `${Details.HungerValue}, 400`;
+            document.getElementById('armor-bar2').style.strokeDasharray = `${Details.ArmorValue}, 400`;
+            document.getElementById('thirsty-bar2').style.strokeDasharray = `${Details.ThirstyValue}, 400`;
+
+            Details.isMicOn ? document.getElementsByClassName('allhudmicontext')[0].style.display = 'block' : document.getElementsByClassName('allhudmicontext')[0].style.display = 'none';
+        },
+        ChangeGearValue(NewValue, isUP = false) {
+            const NowGearText = document.getElementById('NowGearText');
+            const NextGearText = document.getElementById('NextGearText');
+            const SubgearTextBox = document.getElementById('SubgearTextBox');
+            NextGearText.innerHTML = NewValue;
+            if (isUP) {
+                SubgearTextBox.classList.add('SubgearTextBoxActiveUP');
+                let translateValue = -30;
+                const TranslateInterval = setInterval(() => {
+                    if (translateValue > 0) {
+                        NowGearText.innerHTML = NewValue;
+                        NextGearText.innerHTML = "";
+                        SubgearTextBox.style.transform = `translateY(0px)`;
+                        SubgearTextBox.classList.remove('SubgearTextBoxActiveUP');
+                        return clearInterval(TranslateInterval)
+                    }
+                    SubgearTextBox.style.transform = `translateY(${translateValue}px)`;
+                    translateValue++
+                }, 6);
+            } else {
+                SubgearTextBox.classList.add('SubgearTextBoxActiveDown');
+                let translateValue = 0;
+                const TranslateInterval = setInterval(() => {
+                    if (translateValue < -30) {
+                        NowGearText.innerHTML = NewValue;
+                        NextGearText.innerHTML = "";
+                        SubgearTextBox.classList.remove('SubgearTextBoxActiveDown');
+                        SubgearTextBox.style.transform = `translateY(0px)`;
+                        return clearInterval(TranslateInterval)
+                    }
+                    SubgearTextBox.style.transform = `translateY(${translateValue}px)`;
+                    translateValue--
+                }, 6);
+            }
+        }
     },
     unmounted() {
         if ("alt" in window) {
             alt.off(this.eventNames.clientWEB.SetPlayerCashDetails, this.PlayerCashHUDManager);
             alt.off(this.eventNames.clientWEB.SetCarHUDDetails, this.CarHUDManager);
+            alt.off(this.eventNames.clientWEB.SetVeniceHUDDetails, this.PlayerHUDRadarVeniceManager);
         }
     },
-    mounted(){
-        this.CarHUDManager({isActiveCarHud : false})
-        this.PlayerCashHUDManager({isActiveCashHUD : false})
+    mounted() {
+        this.CarHUDManager({ isActiveCarHud: false })
+        this.PlayerCashHUDManager({ isActiveCashHUD: false })
+        this.PlayerHUDRadarVeniceManager({ isActiveRadarVenice: false })
+        // document.getElementsByClassName('venice-hud')[0].style.display = 'block';
+        //     document.getElementsByClassName('allhudmicontext')[0].style.display = 'block'
 
         if ("alt" in window) {
             alt.on(this.eventNames.clientWEB.SetPlayerCashDetails, this.PlayerCashHUDManager);
             alt.on(this.eventNames.clientWEB.SetCarHUDDetails, this.CarHUDManager);
+            alt.on(this.eventNames.clientWEB.SetVeniceHUDDetails, this.PlayerHUDRadarVeniceManager);
         }
     }
 } 
@@ -578,6 +658,26 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&display=swap");
 
+#engineColor {
+    right: 195px;
+    position: absolute;
+    bottom: 70px;
+    width: 20px;
+    height: 20px;
+}
+
+#engine-icon {
+    opacity: 1;
+}
+
+#engineColor path {
+    fill: #000;
+    transition: fill 0.2s;
+}
+
+.engineColorActive path {
+    fill: #fff !important;
+}
 
 .settings {
     display: none;
@@ -631,11 +731,6 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
-}
-
-.venice-hud {
-    display: none;
-
 }
 
 .radial-hud {
@@ -801,6 +896,71 @@ export default {
     text-align: center;
 
 
+}
+
+#SubgearTextBox {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.SubgearTextBoxActiveDown {
+    transform: translateY(0px);
+}
+
+.SubgearTextBoxActiveUP {
+    transform: translateY(-30px);
+}
+
+.SubgearTextBoxActiveDown #NowGearText {
+    grid-area: 1;
+}
+
+.SubgearTextBoxActiveUP #NowGearText {
+    grid-area: 3;
+}
+
+#NextGearText {
+    grid-area: 2;
+}
+
+#SubgearTextBox h2 {
+    font-family: var(--font-family) !important;
+    margin: 0;
+    padding: 0;
+    transform: scale(0.8) !important;
+    color: #fff;
+}
+
+#gearTextBox {
+    overflow: hidden;
+    padding-top: 5px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    opacity: 1;
+    top: 42px;
+    right: -20px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px #000;
+}
+
+.ShakeGear {
+    animation: shakeGear 0.3s infinite;
+    transform: scale(0.5) !important;
+}
+
+@keyframes shakeGear {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
 .text-hud-map {
@@ -1301,16 +1461,6 @@ export default {
     height: 1.8vh;
     bottom: 2.5vh !important;
     left: 14.8vh !important;
-    z-index: 100;
-    display: none;
-}
-
-.allhudmicontext {
-    position: absolute;
-    width: 0.8vh;
-    height: 1.6vh;
-    bottom: 1.45vh;
-    left: 14.9vh;
     z-index: 100;
     display: none;
 }
@@ -2208,10 +2358,10 @@ export default {
 
 .allhudmicontext {
     position: absolute;
-    width: 0.8vh;
+    width: 0.9vh;
     height: 1.6vh;
-    bottom: 1.45vh;
-    left: 14.9vh;
+    bottom: 2.9vh;
+    left: 14.88vh;
     z-index: 100;
     display: none;
 }

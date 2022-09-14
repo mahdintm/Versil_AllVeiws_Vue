@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      LoginVue: { isActive: false },
+      LoginVue: { isActive: true },
       ChatVue: { isActive: false },
       HUDVue: { isActive: false },
       VehicleVue: { isActive: false },
@@ -145,6 +145,14 @@ export default {
 </script>
 
 <style>
+/* body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+} */
+
 :root {
   --font-family: "IRANSans";
   --scrollbar_background: #888888;
@@ -168,6 +176,7 @@ export default {
   --Sans_Regular: "IRAN_Sans_Regular";
   --circle-size: 25px;
   --spacing: 8px;
+  --bs-primary: #7367F0;
 }
 
 @font-face {
@@ -233,6 +242,7 @@ export default {
 
 body {
   background: none !important;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
